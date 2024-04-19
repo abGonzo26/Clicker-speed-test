@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clicker Speed Test Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h1>Clicker Speed Test Game</h1>
+        <div class="row">
+            <div>
+                <h3 id="time">Timer: 10 sec</h3>
+                <button id="start/restart">Start/Restart</button>
+                <button id="click">Click</button>
+                <label id="score">Score: 0</label>
+            </div>
+            <div>
+                <img id='image' src="https://www.iconpacks.net/icons/2/free-click-icon-2384-thumb.png">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let counter = 0;
+    const clickButton = document.getElementById('click');
+    const scoreLabel = document.getElementById('score');
+    const timeLabel = document.getElementById('time');
+    const startButton = document.getElementById('start/restart');
+    let timeLeft = 10;
+    const image = document.getElementById('image')
+
+
+    setInterval(function(){
+        if(timeLeft > 0) {
+            timeLeft--;
+            timeLabel.textContent = "Timer: " + timeLeft + " sec";
+        } else{
+            timeLabel.textContent = "All done!"
+            if (counter > 0){
+                image.src = "https://media.istockphoto.com/id/604016026/photo/snails-on-the-athletic-track.jpg?s=612x612&w=0&k=20&c=OLoJLLexYxUQjWYWI5lyCF1J8jktnSqQgFS1I8rQxbA="
+            }
+            timeLabel.textContent = "All done!"
+            if (counter > 20){
+                image.src = "https://wildlifeinformer.com/wp-content/uploads/2021/08/pygmy-sloth.webp"
+            }
+            timeLabel.textContent = "All done!"
+            if (counter > 30){
+                image.src = "https://awentherapy.wordpress.com/wp-content/uploads/2014/02/rabbit.jpg"
+            }
+            timeLabel.textContent = "All done!"
+            if (counter > 50){
+                image.src = "https://ppg-web-external.s3.amazonaws.com/uploads/zinnia/greyhound.jpg "
+            }
+            timeLabel.textContent = "All done!"
+            if (counter > 60){
+                image.src = "https://www.shutterstock.com/image-photo/cheetah-acinonyx-jubatus-adult-running-600nw-1652757304.jpg"
+            }
+        }
+    },1000)
+    function addItem(){
+        if(timeLeft > 0) {
+            counter++;
+            scoreLabel.textContent = `Score: ${counter}`
+        }
+    }
+
+
+    clickButton.addEventListener('click', addItem);
+    startButton.addEventListener('click', function (){
+        timeLeft = 10;
+        timeLabel.textContent = "Timer: " + timeLeft + " sec";
+        counter = 0;
+        scoreLabel.textContent = `Score: ${counter}`
+    })
+
+
+</script>
+
+</body>
+</html>
