@@ -29,46 +29,63 @@
     const timeLabel = document.getElementById('time');
     const startButton = document.getElementById('start/restart');
     let timeLeft = 10;
-    const image = document.getElementById('image')
+    const image = document.getElementById('image');
+    let timer = false;
 
 
-    setInterval(function(){
-        if(timeLeft > 0) {
-            timeLeft--;
-            timeLabel.textContent = "Timer: " + timeLeft + " sec";
-        } else{
-            timeLabel.textContent = "All done!"
-            if (counter > 0){
-                image.src = "https://media.istockphoto.com/id/604016026/photo/snails-on-the-athletic-track.jpg?s=612x612&w=0&k=20&c=OLoJLLexYxUQjWYWI5lyCF1J8jktnSqQgFS1I8rQxbA="
-            }
-            timeLabel.textContent = "All done!"
-            if (counter > 20){
-                image.src = "https://wildlifeinformer.com/wp-content/uploads/2021/08/pygmy-sloth.webp"
-            }
-            timeLabel.textContent = "All done!"
-            if (counter > 30){
-                image.src = "https://awentherapy.wordpress.com/wp-content/uploads/2014/02/rabbit.jpg"
-            }
-            timeLabel.textContent = "All done!"
-            if (counter > 50){
-                image.src = "https://ppg-web-external.s3.amazonaws.com/uploads/zinnia/greyhound.jpg "
-            }
-            timeLabel.textContent = "All done!"
-            if (counter > 60){
-                image.src = "https://www.shutterstock.com/image-photo/cheetah-acinonyx-jubatus-adult-running-600nw-1652757304.jpg"
-            }
-        }
-    },1000)
     function addItem(){
         if(timeLeft > 0) {
             counter++;
             scoreLabel.textContent = `Score: ${counter}`
+            if (timer){
+                return;
+            } else{
+                timer = setInterval(function(){
+                    if(timeLeft > 0) {
+                        timeLeft--;
+                        timeLabel.textContent = "Timer: " + timeLeft + " sec";
+                    } else{
+                        timeLabel.textContent = "All done!"
+                        clearInterval(timer)
+                        timer = false
+                        if (counter > 0){
+                            image.src = "https://media.istockphoto.com/id/604016026/photo/snails-on-the-athletic-track.jpg?s=612x612&w=0&k=20&c=OLoJLLexYxUQjWYWI5lyCF1J8jktnSqQgFS1I8rQxbA="
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 20){
+                            image.src = "https://wildlifeinformer.com/wp-content/uploads/2021/08/pygmy-sloth.webp"
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 40){
+                            image.src = "https://awentherapy.wordpress.com/wp-content/uploads/2014/02/rabbit.jpg"
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 60){
+                            image.src = "https://media.istockphoto.com/id/507294134/photo/pure-bred-spanish-black-stallion-trotting-on-snow-meadow.jpg?s=612x612&w=0&k=20&c=27ikAOjTgb7uO3pHWf8OYMF4mrMDRSRzNryaJEILdBg="
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 80){
+                            image.src = "https://ppg-web-external.s3.amazonaws.com/uploads/zinnia/greyhound.jpg"
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 100){
+                            image.src = "https://www.shutterstock.com/image-photo/cheetah-acinonyx-jubatus-adult-running-600nw-1652757304.jpg"
+                        }
+                        timeLabel.textContent = "All done!"
+                        if (counter > 200){
+                            image.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPS9gmEw2nuq0uxiCZAs6wkDzczF2Qz5Po4bP9nvIJxw&s"
+                        }
+                    }
+                },1000)
+            }
         }
     }
 
 
     clickButton.addEventListener('click', addItem);
     startButton.addEventListener('click', function (){
+        clearInterval(timer)
+        timer = false
         timeLeft = 10;
         timeLabel.textContent = "Timer: " + timeLeft + " sec";
         counter = 0;
